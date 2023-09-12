@@ -1,7 +1,7 @@
 <?php
 $ch = curl_init();
 
-// óñòàíîâêà URL è äðóãèõ íåîáõîäèìûõ ïàðàìåòðîâ
+// ÑƒÑÑ‚Ð°Ð½Ð¾Ð²ÐºÐ° URL Ð¸ Ð´Ñ€ÑƒÐ³Ð¸Ñ… Ð½ÐµÐ¾Ð±Ñ…Ð¾Ð´Ð¸Ð¼Ñ‹Ñ… Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð¾Ð²
 curl_setopt($ch, CURLOPT_URL, "http://www.kinonews.ru/". $_GET["st"]);
 curl_setopt($ch, CURLOPT_HEADER, 0);
 curl_setopt($ch, CURLOPT_TIMEOUT, 5);
@@ -11,7 +11,7 @@ curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows; U; Windows NT 5.1; ru
 
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
-// çàãðóçêà ñòðàíèöû è âûäà÷à å¸ áðàóçåðó
+// Ð·Ð°Ð³Ñ€ÑƒÐ·ÐºÐ° ÑÑ‚Ñ€Ð°Ð½Ð¸Ñ†Ñ‹ Ð¸ Ð²Ñ‹Ð´Ð°Ñ‡Ð° ÐµÑ‘ Ð±Ñ€Ð°ÑƒÐ·ÐµÑ€Ñƒ
 $data = curl_exec($ch);
 
 $data = preg_replace("!<noindex>(.*?)</noindex>!si","",$data);
@@ -23,6 +23,7 @@ $data = str_replace("image=/" , "image=http://www.kinonews.ru/", $data);
 $data = str_replace("<a href='http://www.kinonews.ru/", "<a href='http://". $_SERVER["SERVER_NAME"] ."/?st=" , $data);
 echo str_replace('<a href="http://www.kinonews.ru/', '<a href="http://'. $_SERVER["SERVER_NAME"] .'/?st=' , $data);
 
-// çàâåðøåíèå ñåàíñà è îñâîáîæäåíèå ðåñóðñîâ
+// Ð·Ð°Ð²ÐµÑ€ÑˆÐµÐ½Ð¸Ðµ ÑÐµÐ°Ð½ÑÐ° Ð¸ Ð¾ÑÐ²Ð¾Ð±Ð¾Ð¶Ð´ÐµÐ½Ð¸Ðµ Ñ€ÐµÑÑƒÑ€ÑÐ¾Ð²
 curl_close($ch);
+
 ?>
